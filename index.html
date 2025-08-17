@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ذمارام لدهنات والديكورات والترميمات</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('unnamed.jpeg') no-repeat center center/cover;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        .section-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 8px;
+            margin-bottom: 24px;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: #2a9d8f; /* Primary color */
+            border-radius: 9999px;
+        }
+        .service-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            overflow: hidden; /* Ensure images stay within card during animation */
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        .contact-form input,
+        .contact-form textarea {
+            border: 1px solid #ddd;
+            padding: 12px;
+            border-radius: 8px;
+            width: 100%;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: #2a9d8f;
+            box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.2);
+        }
+
+        /* CSS for slide-in animation */
+        @keyframes slideInFromLeft {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .animate-slide-in-left {
+            animation: slideInFromLeft 1s ease-out forwards;
+        }
+        /* No sequential delay for service cards as they have independent carousels */
+
+        /* Specific styles for carousel image to ensure it hides before re-animating */
+        .carousel-image.animate-slide-in-left {
+            animation: slideInFromLeft 1s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header/Navbar -->
+    <header class="bg-white shadow-md py-4 sticky top-0 z-50">
+        <nav class="container mx-auto flex justify-between items-center px-4">
+            <a href="#" class="text-2xl font-bold text-gray-800">
+                <span class="text-teal-600">ذمارام</span> لدهانات والديكورات والترميمات
+            </a>
+            <div class="hidden md:flex space-x-6 space-x-reverse">
+                <a href="#hero" class="text-gray-600 hover:text-teal-600 transition duration-300">الرئيسية</a>
+                <a href="#services" class="text-gray-600 hover:text-teal-600 transition duration-300">خدماتنا</a>
+                <a href="#gallery" class="text-gray-600 hover:text-teal-600 transition duration-300">معرض الأعمال</a>
+                <a href="#about" class="text-gray-600 hover:text-teal-600 transition duration-300">من نحن</a>
+                <a href="#contact" class="text-gray-600 hover:text-teal-600 transition duration-300">اتصل بنا</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-gray-600 hover:text-teal-600 focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white py-2 shadow-lg">
+            <a href="#hero" class="block px-4 py-2 text-gray-800 hover:bg-gray-100 transition duration-300">الرئيسية</a>
+            <a href="#services" class="block px-4 py-2 text-gray-800 hover:bg-gray-100 transition duration-300">خدماتنا</a>
+            <a href="#gallery" class="block px-4 py-2 text-gray-800 hover:bg-gray-100 transition duration-300">معرض الأعمال</a>
+            <a href="#about" class="block px-4 py-2 text-gray-800 hover:bg-gray-100 transition duration-300">من نحن</a>
+            <a href="#contact" class="block px-4 py-2 text-gray-800 hover:bg-gray-100 transition duration-300">اتصل بنا</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+        <div class="max-w-4xl mx-auto px-4">
+            <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-4 drop-shadow-lg">
+                <span class="text-teal-300">ذمارام لدهانات</span> لترميم منزلك
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 opacity-90 drop-shadow-md">
+                نقدم أفضل حلول الترميمات والدهانات لتجديد مساحاتك بجمال وجودة لا مثيل لها.
+            </p>
+            <!-- Call to action buttons - WhatsApp and Phone -->
+            <div class="flex justify-center gap-4 flex-wrap">
+                <a href="https://wa.me/966500021627" target="_blank" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg flex items-center transform hover:scale-105 transition duration-300">
+                    <i class="fab fa-whatsapp text-2xl ml-2"></i> اتصل بنا واتساب
+                </a>
+                <a href="tel:+966500021627" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg flex items-center transform hover:scale-105 transition duration-300">
+                    <i class="fas fa-phone-alt text-2xl ml-2"></i> اتصل بنا هاتفياً
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800 section-title">خدماتنا المميزة</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service Card 1: الدهانات الداخلية والخارجية -->
+                <div class="service-card bg-white p-8 rounded-xl shadow-lg text-center border border-gray-100">
+                    <img id="service-carousel-1" src="https://placehold.co/200x120/a8dadc/1d3557?text=دهانات+1" alt="دهانات داخلية وخارجية" class="rounded-lg mx-auto mb-6 carousel-image">
+                    <div class="text-5xl text-teal-600 mb-6">
+                        <i class="fas fa-paint-roller"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">الدهانات الداخلية والخارجية</h3>
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        نقدم دهانات عالية الجودة لجميع المساحات الداخلية والخارجية، بألوان وتصاميم عصرية تناسب ذوقك.
+                    </p>
+                    <a href="painting.html" class="inline-block bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-lg text-sm shadow-md transition duration-300">
+                        عرض المزيد
+                    </a>
+                </div>
+
+                <!-- Service Card 2: ترميم التشققات والجدران -->
+                <div class="service-card bg-white p-8 rounded-xl shadow-lg text-center border border-gray-100">
+                    <img id="service-carousel-2" src="https://placehold.co/200x120/457b9d/f1faee?text=ترميم+1" alt="ترميم التشققات والجدران" class="rounded-lg mx-auto mb-6 carousel-image">
+                    <div class="text-5xl text-teal-600 mb-6">
+                        <i class="fas fa-hammer"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">ترميم التشققات والجدران</h3>
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        معالجة شاملة للتشققات والتلف في الجدران والأسقف، لضمان سطح أملس ومتين قبل الدهان.
+                    </p>
+                    <a href="cracks-renovation.html" class="inline-block bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-lg text-sm shadow-md transition duration-300">
+                        عرض المزيد
+                    </a>
+                </div>
+
+                <!-- Service Card 3: عزل الأسطح والرطوبة -->
+                <div class="service-card bg-white p-8 rounded-xl shadow-lg text-center border border-gray-100">
+                    <img id="service-carousel-3" src="https://placehold.co/200x120/1d3557/a8dadc?text=عزل+1" alt="عزل الأسطح والرطوبة" class="rounded-lg mx-auto mb-6 carousel-image">
+                    <div class="text-5xl text-teal-600 mb-6">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">عزل الأسطح والرطوبة</h3>
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        حلول فعالة لمشاكل الرطوبة وتسرب المياه، مع تطبيق مواد عزل عالية الجودة لحماية منزلك.
+                    </p>
+                    <a href="insulation.html" class="inline-block bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-lg text-sm shadow-md transition duration-300">
+                        عرض المزيد
+                    </a>
+                </div>
+
+                <!-- Service Card 4: أعمال الجبس والديكور -->
+                <div class="service-card bg-white p-8 rounded-xl shadow-lg text-center border border-gray-100">
+                    <img id="service-carousel-4" src="https://placehold.co/200x120/f1faee/1d3557?text=جبس+1" alt="أعمال الجبس والديكور" class="rounded-lg mx-auto mb-6 carousel-image">
+                    <div class="text-5xl text-teal-600 mb-6">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">أعمال الجبس والديكور</h3>
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        تصميم وتركيب جميع أنواع الديكورات الجبسية والأسقف المعلقة لإضافة لمسة جمالية فريدة.
+                    </p>
+                    <a href="gypsum-decor.html" class="inline-block bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-lg text-sm shadow-md transition duration-300">
+                        عرض المزيد
+                    </a>
+                </div>
+
+                
+
+                <!-- Service Card 6: استشارات تصميم الألوان (بدون صور متحركة وزر عرض المزيد) -->
+                <div class="service-card bg-white p-8 rounded-xl shadow-lg text-center border border-gray-100">
+                    <div class="text-5xl text-teal-600 mb-6">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">استشارات تصميم الألوان</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        نساعدك في اختيار الألوان المناسبة لمنزلك، لتوفير جو مريح وجذاب يعكس شخصيتك.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Image Carousel Section -->
+    <section id="gallery" class="py-16 bg-white overflow-hidden">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800 section-title">معرض أعمالنا</h2>
+            <div class="relative w-full max-w-4xl mx-auto rounded-xl shadow-lg overflow-hidden">
+                <img id="main-carousel-image" src="https://placehold.co/800x500/2a9d8f/ffffff?text=صورة+1" alt="صورة معرض" class="w-full h-auto object-cover carousel-image">
+                <!-- Navigation buttons -->
+                <button id="prev-btn" class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-3 rounded-full hover:bg-opacity-75 transition z-10">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <button id="next-btn" class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-3 rounded-full hover:bg-opacity-75 transition z-10">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-16 bg-white overflow-hidden">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center gap-8">
+            <div class="md:w-1/2">
+                
+            </div>
+            <div class="md:w-1/2 text-center md:text-right">
+                <h2 class="text-4xl font-bold mb-6 text-gray-800 section-title">من نحن</h2>
+                <p class="text-gray-700 leading-loose mb-4">
+                    "ذمارام لدهانات والديكورات" هي شركتك الموثوقة في مجال الترميمات والدهانات. نلتزم بتقديم أعلى مستويات الجودة والاحترافية في جميع مشاريعنا، من الدهانات البسيطة إلى الترميمات الشاملة. فريقنا من الخبراء والفنيين المدربين جيدًا يضمن لك نتائج مبهرة تدوم طويلاً.
+                </p>
+                <p class="text-gray-700 leading-loose">
+                    هدفنا هو تحويل رؤيتك إلى واقع، مع الاهتمام بأدق التفاصيل لضمان رضاك التام. نحن نفخر بسمعتنا في تقديم خدمة عملاء ممتازة والالتزام بالمواعيد المحددة والميزانيات المتفق عليها.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800 section-title">تواصل معنا</h2>
+            <p class="text-lg text-gray-700 max-w-2xl mx-auto mb-8">
+                نحن هنا لخدمتك! اختر طريقة التواصل المفضلة لديك وسنتواصل معك في أقرب وقت.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center gap-6">
+                <a href="tel:+966500021627" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full text-xl shadow-lg flex items-center justify-center transform hover:scale-105 transition duration-300 min-w-[200px]">
+                    <i class="fas fa-phone-alt text-2xl ml-3"></i> اتصل هاتفياً
+                </a>
+                <a href="https://wa.me/966500021627" target="_blank" class="bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-full text-xl shadow-lg flex items-center justify-center transform hover:scale-105 transition duration-300 min-w-[200px]">
+                    <i class="fab fa-whatsapp text-2xl ml-3"></i> تواصل واتساب
+                </a>
+                <a href="abdrbuh14@gmail.com" class="bg-red-500 hover:bg-red-600 text-white font-bold py-4 px-8 rounded-full text-xl shadow-lg flex items-center justify-center transform hover:scale-105 transition duration-300 min-w-[200px]">
+                    <i class="fas fa-envelope text-2xl ml-3"></i> تواصل عبر الإيميل
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-center md:text-right">
+            <p>&copy; 2024 ذمارام للترميمات والدهانات. جميع الحقوق محفوظة.</p>
+            <div class="flex space-x-4 space-x-reverse mt-4 md:mt-0">
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-400 hover:text-white transition duration-300"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // --- Main Image Carousel Logic ---
+        const mainCarouselImages = [
+            "d.jpeg",
+            "dddddddd.jpeg",
+            "ggggg.jpeg",
+            "zzzzzzz.jpeg",
+            "bbbbbbbb.jpeg",
+            "bbbbbb.jpeg",
+            "zzzzzzzz.jpeg",
+            "b.jpeg",
+            "ddd.jpeg",
+            "dddddd.jpeg"
+        ];
+        let currentMainImageIndex = 0;
+        const mainCarouselImageElement = document.getElementById('main-carousel-image');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+
+        function updateMainCarouselImage() {
+            mainCarouselImageElement.classList.remove('animate-slide-in-left');
+            void mainCarouselImageElement.offsetWidth; // Trigger reflow
+            mainCarouselImageElement.src = mainCarouselImages[currentMainImageIndex];
+            mainCarouselImageElement.classList.add('animate-slide-in-left');
+        }
+
+        let mainCarouselInterval = setInterval(() => {
+            currentMainImageIndex = (currentMainImageIndex + 1) % mainCarouselImages.length;
+            updateMainCarouselImage();
+        }, 5000);
+
+        prevBtn.addEventListener('click', () => {
+            clearInterval(mainCarouselInterval);
+            currentMainImageIndex = (currentMainImageIndex - 1 + mainCarouselImages.length) % mainCarouselImages.length;
+            updateMainCarouselImage();
+            mainCarouselInterval = setInterval(() => {
+                currentMainImageIndex = (currentMainImageIndex + 1) % mainCarouselImages.length;
+                updateMainCarouselImage();
+            }, 5000);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            clearInterval(mainCarouselInterval);
+            currentMainImageIndex = (currentMainImageIndex + 1) % mainCarouselImages.length;
+            updateMainCarouselImage();
+            mainCarouselInterval = setInterval(() => {
+                currentMainImageIndex = (currentMainImageIndex + 1) % mainCarouselImages.length;
+                updateMainCarouselImage();
+            }, 5000);
+        });
+
+        // Initial image load for main carousel
+        document.addEventListener('DOMContentLoaded', updateMainCarouselImage);
+
+
+        // --- Service Cards Image Carousels Logic ---
+        const serviceCardCarouselsData = [
+            {
+                id: 'service-carousel-1',
+                images: [
+                    "d.jpeg",
+                    "dd.jpeg",
+                    "ddd.jpeg"
+                ],
+                currentIndex: 0,
+                intervalId: null
+            },
+            {
+                id: 'service-carousel-2',
+                images: [
+                    "g.jpeg",
+                    "gg.jpeg",
+                    "ggg.jpeg"
+                ],
+                currentIndex: 0,
+                intervalId: null
+            },
+            {
+                id: 'service-carousel-3',
+                images: [
+                    "z.jpeg",
+                    "zzzzz.jpeg",
+                    "zzzzzzzz.jpeg"
+                ],
+                currentIndex: 0,
+                intervalId: null
+            },
+            {
+                id: 'service-carousel-4',
+                images: [
+                    "bbbbbbb.jpeg",
+                    "bbbbbbbb.jpeg",
+                    "bbbb.jpeg"
+                ],
+                currentIndex: 0,
+                intervalId: null
+            },
+            {
+                id: 'service-carousel-5',
+                images: [
+                    "https://placehold.co/200x120/e63946/f1faee?text=صيانة+1",
+                    "https://placehold.co/200x120/e63946/f1faee?text=صيانة+2",
+                    "https://placehold.co/200x120/e63946/f1faee?text=صيانة+3"
+                ],
+                currentIndex: 0,
+                intervalId: null
+            }
+        ];
+
+        function updateServiceCarouselImage(carouselData) {
+            const imgElement = document.getElementById(carouselData.id);
+            if (!imgElement) return;
+
+            imgElement.classList.remove('animate-slide-in-left');
+            void imgElement.offsetWidth; // Trigger reflow
+            imgElement.src = carouselData.images[carouselData.currentIndex];
+            imgElement.classList.add('animate-slide-in-left');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            serviceCardCarouselsData.forEach(carousel => {
+                // Initial image load
+                updateServiceCarouselImage(carousel);
+
+                // Start automatic slide for each carousel
+                carousel.intervalId = setInterval(() => {
+                    carousel.currentIndex = (carousel.currentIndex + 1) % carousel.images.length;
+                    updateServiceCarouselImage(carousel);
+                }, 5000); // Change every 5 seconds
+            });
+        });
+    </script>
+</body>
+</html>
